@@ -7,7 +7,7 @@ import 'package:mad_project/UserModel.dart';
 import 'package:mad_project/login.dart';
 import 'imageCarousel.dart';
 import 'body.dart';
-import 'footer.dart';
+import 'referenceMaterial.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -40,7 +40,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home"),
+        title: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 95),
+          child: Text(
+            "T.I.M.S",
+          ),
+        ),
       ),
       drawer: Drawer(
         child: ListView(
@@ -165,7 +170,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(fontSize: 15),
                 ),
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Reference()));
                 },
                 dense: true,
               ),
@@ -217,25 +223,3 @@ Future<void> logout(BuildContext context) async {
   Navigator.of(context)
       .pushReplacement(MaterialPageRoute(builder: (context) => LoginScreen()));
 }
-
-
-
-// Scaffold(
-//       appBar: AppBar(
-//         title: Text("Home"),
-//       ),
-//       body: Column(
-//         children: [
-//           Container(
-//             child: Text("welcome ${userLoggedIn.firstName}"),
-//           ),
-//           ActionChip(
-//               label: Text("Log Out"),
-//               onPressed: () {
-//                 logout(context);
-//               })
-//         ],
-//       ),
-//     );
-
-

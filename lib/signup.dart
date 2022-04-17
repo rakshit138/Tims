@@ -203,7 +203,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: Container(
             color: Colors.white,
             child: Padding(
-              padding: const EdgeInsets.all(36.0),
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -216,17 +216,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           "assets/logo_transparent.png",
                           fit: BoxFit.contain,
                         )),
-                    SizedBox(height: 45),
+                    // SizedBox(height: 45),
                     firstNameField,
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     secondNameField,
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     emailField,
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     passwordField,
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     confirmPasswordField,
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     signUpButton,
                     SizedBox(height: 15),
                     Row(

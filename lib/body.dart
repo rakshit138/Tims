@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'referenceMaterial.dart';
 
 const MaterialColor primaryMaroon = MaterialColor(
   _MaroonPrimaryValue,
@@ -131,7 +132,10 @@ class _BodyState extends State<Body> {
       child: MaterialButton(
           minWidth: MediaQuery.of(context).size.width / 3,
           padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Reference()));
+          },
           child: Column(
             children: [
               Icon(
