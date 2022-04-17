@@ -205,7 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [ImageSlider(), Body()],
           ),
           SizedBox(),
-          Footer()
+          //Footer()
         ]),
       ),
     );

@@ -179,7 +179,7 @@ class _BodyState extends State<Body> {
         mainAxisSize: MainAxisSize.max,
         children: [
           SizedBox(
-            height: 20,
+            height: 80,
           ),
           Row(
             mainAxisSize: MainAxisSize.max,
