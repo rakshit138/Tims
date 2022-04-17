@@ -7,6 +7,7 @@ import 'package:mad_project/UserModel.dart';
 import 'package:mad_project/login.dart';
 import 'imageCarousel.dart';
 import 'body.dart';
+import 'footer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -197,14 +198,15 @@ class _HomeScreenState extends State<HomeScreen> {
             ]),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            ImageSlider(),
-            Body(),
-          ],
-        ),
+        child: Column(mainAxisSize: MainAxisSize.max, children: [
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [ImageSlider(), Body()],
+          ),
+          SizedBox(),
+          Footer()
+        ]),
       ),
     );
   }
