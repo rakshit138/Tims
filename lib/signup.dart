@@ -211,9 +211,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     SizedBox(
-                        height: 180,
+                        height: 200,
                         child: Image.asset(
-                          "assets/logo.png",
+                          "assets/logo_transparent.png",
                           fit: BoxFit.contain,
                         )),
                     SizedBox(height: 45),

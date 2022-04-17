@@ -173,7 +173,7 @@ class _BodyState extends State<Body> {
             ],
           )),
     );
-    return Container(
+    return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         mainAxisSize: MainAxisSize.max,

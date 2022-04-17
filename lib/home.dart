@@ -196,13 +196,15 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ]),
       ),
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          ImageSlider(),
-          Body(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            ImageSlider(),
+            Body(),
+          ],
+        ),
       ),
     );
   }
