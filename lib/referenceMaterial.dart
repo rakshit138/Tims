@@ -42,6 +42,38 @@ class Reference extends StatelessWidget {
                 ),
                 title: Text('WCC'),
                 subtitle: Text("Upen Dalal")),
+            ListTile(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Link2()));
+                },
+                leading: ExcludeSemantics(
+                  child: CircleAvatar(
+                    child: Text(
+                      '2',
+                      style: TextStyle(color: Color(0xFF8E334C)),
+                    ),
+                    backgroundColor: Color(0xFFEC9454),
+                  ),
+                ),
+                title: Text('Wireless Communication'),
+                subtitle: Text("Andreas -f molisch")),
+            ListTile(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Link3()));
+                },
+                leading: ExcludeSemantics(
+                  child: CircleAvatar(
+                    child: Text(
+                      '3',
+                      style: TextStyle(color: Color(0xFF8E334C)),
+                    ),
+                    backgroundColor: Color(0xFFEC9454),
+                  ),
+                ),
+                title: Text('UM10360'),
+                subtitle: Text("Embedded Systems")),
           ],
         ),
       ),

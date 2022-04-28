@@ -5,10 +5,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mad_project/login.dart';
+import 'user_sheet_api.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
+  UserssheetApi.init();
 
   runApp(const MyApp());
 }
@@ -40,9 +43,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'T.I.M.S',
         theme: ThemeData(
-            primaryColor: Color(0xFF8E334C), primarySwatch: primaryMaroon),
+            appBarTheme: AppBarTheme(
+                centerTitle: true,
+                titleTextStyle: TextStyle(
+                  color: Color(0xFFEC9454),
+                  fontSize: 28,
+                )),
+            primaryColor: Color(0xFF8E334C),
+            primarySwatch: primaryMaroon),
         home: LoginScreen());
   }
 }
