@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'user.dart';
-import 'button.dart';
+import 'user_attend.dart';
+import 'button_atten.dart';
 
 class UserFormWidget extends StatefulWidget {
   final ValueChanged<User> onSavedUser;
@@ -19,11 +19,8 @@ class _UserFormWidgetState extends State<UserFormWidget> {
   final formKey = GlobalKey<FormState>();
   late TextEditingController controllerName;
   late TextEditingController controllerEmail;
-  late TextEditingController controllerquiz1;
-  late TextEditingController controllerquiz2;
-  late TextEditingController controllerinsem1;
-  late TextEditingController controllerinsem2;
-  //late bool begin;
+  late bool begin;
+  late TextEditingController controllerAttendance;
   //late int id;
 
   @override
@@ -41,21 +38,15 @@ class _UserFormWidgetState extends State<UserFormWidget> {
   void initUser() {
     final name = widget.user == null ? '' : widget.user!.name;
     final email = widget.user == null ? '' : widget.user!.email;
-    // final begin = widget.user == null ? true : widget.user!.begin;
-    final quiz1 = widget.user == null ? 0 : widget.user!.quiz1;
-    final quiz2 = widget.user == null ? 0 : widget.user!.quiz2;
-    final insem1 = widget.user == null ? 0 : widget.user!.insem1;
-    final insem2 = widget.user == null ? 0 : widget.user!.insem2;
+    final begin = widget.user == null ? true : widget.user!.begin;
+    final attendance = widget.user == null ? '' : widget.user!.attendance;
     // final id= widget.user ==null ? 0: widget.user!.name;
     //setState(() {
 
     controllerName = TextEditingController(text: name);
     controllerEmail = TextEditingController(text: email);
-    controllerquiz1 = TextEditingController(text: quiz1.toString());
-    controllerquiz2 = TextEditingController(text: quiz2.toString());
-    controllerinsem1 = TextEditingController(text: insem1.toString());
-    controllerinsem2 = TextEditingController(text: insem2.toString());
-    //this.begin = begin;
+    controllerAttendance = TextEditingController(text: attendance);
+    this.begin = begin;
     //this.id=0;
     //});
   }
@@ -71,15 +62,9 @@ class _UserFormWidgetState extends State<UserFormWidget> {
               const SizedBox(height: 16),
               buildEmail(),
               const SizedBox(height: 16),
-              // buildbegin(),
+              buildbegin(),
               const SizedBox(height: 16),
-              buildquiz1(),
-              const SizedBox(height: 16),
-              buildinsem1(),
-              const SizedBox(height: 16),
-              buildquiz2(),
-              const SizedBox(height: 16),
-              buildinsem2(),
+              buildAttendance(),
               const SizedBox(height: 16),
               buildSubmit(),
             ],
@@ -105,45 +90,30 @@ class _UserFormWidgetState extends State<UserFormWidget> {
         validator: (value) =>
             value != null && !value.contains('@') ? 'email' : null,
       );
-  Widget buildquiz1() => TextFormField(
-        controller: controllerquiz1,
+  Widget buildAttendance() => TextFormField(
+        controller: controllerAttendance,
         decoration: InputDecoration(
-          labelText: 'Quiz 1',
+          labelText: 'Attendance',
           border: OutlineInputBorder(),
         ),
-        validator: (value) => value != null && value.isEmpty ? '0' : null,
+        validator: (value) => value != null && !value.contains('') ? '' : null,
       );
-  Widget buildquiz2() => TextFormField(
-        controller: controllerquiz2,
-        decoration: InputDecoration(
-          labelText: 'Quiz 2',
-          border: OutlineInputBorder(),
-        ),
-        validator: (value) => value != null && value.isEmpty ? '0' : null,
+  Widget buildbegin() => SwitchListTile(
+        value: begin,
+        title: Text('begin'),
+        onChanged: (value) {
+          setState(() => begin = value);
+          setState(() {
+            if (value) {
+              //Userfields.attendance="Present" ;
+              controllerAttendance.text = 'Present';
+            } else {
+              // Userfields.attendance="Absent" ;
+              controllerAttendance.text = 'Absent';
+            }
+          });
+        },
       );
-  Widget buildinsem1() => TextFormField(
-        controller: controllerinsem1,
-        decoration: InputDecoration(
-          labelText: 'Insem 1',
-          border: OutlineInputBorder(),
-        ),
-        validator: (value) => value != null && value.isEmpty ? '0' : null,
-      );
-  Widget buildinsem2() => TextFormField(
-        controller: controllerinsem2,
-        decoration: InputDecoration(
-          labelText: 'Insem 2',
-          border: OutlineInputBorder(),
-        ),
-        validator: (value) => value != null && value.isEmpty ? '0' : null,
-      );
-
-  // Widget buildbegin() => SwitchListTile(
-  //       value: begin,
-  //       title: Text('begin'),
-  //       onChanged: (value) => setState(() => begin = value),
-  //     );
-
   Widget buildSubmit() => ButtonWidget(
         text: 'Save',
         onClicked: () {
@@ -155,11 +125,8 @@ class _UserFormWidgetState extends State<UserFormWidget> {
               id: id,
               name: controllerName.text,
               email: controllerEmail.text,
-              //  begin: begin,
-              quiz1: int.parse(controllerquiz1.text),
-              quiz2: int.parse(controllerquiz2.text),
-              insem1: int.parse(controllerinsem1.text),
-              insem2: int.parse(controllerinsem2.text),
+              begin: begin,
+              attendance: controllerAttendance.text,
             );
             widget.onSavedUser(user);
           }

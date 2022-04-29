@@ -8,6 +8,7 @@ import 'reminder.dart';
 import 'create_sheet.dart';
 import 'home.dart';
 import 'classList.dart';
+import 'attendance/create_sheet_attend.dart';
 
 const MaterialColor primaryMaroon = MaterialColor(
   _MaroonPrimaryValue,
@@ -84,7 +85,7 @@ class _BodyState extends State<Body> {
       color: Color(0xFF8E334C),
       child: MaterialButton(
           padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-          minWidth: MediaQuery.of(context).size.width / 2,
+          minWidth: MediaQuery.of(context).size.width / 1.5,
           height: MediaQuery.of(context).size.width / 4,
           onPressed: () => Navigator.pop(context),
           child: Text(
@@ -133,12 +134,36 @@ class _BodyState extends State<Body> {
       );
     }
 
+    final CreateButtonAttendance = Material(
+      elevation: 5,
+      borderRadius: BorderRadius.circular(30),
+      color: Color(0xFF8E334C),
+      child: MaterialButton(
+          padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          minWidth: MediaQuery.of(context).size.width / 2,
+          height: MediaQuery.of(context).size.width / 4,
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CreateSheetPageAttend()));
+          },
+          child: Text(
+            "Create",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 20,
+                color: Color(0xFFEC9454),
+                fontWeight: FontWeight.bold),
+          )),
+    );
+
     final AttendanceButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(10),
       color: Color(0xFF8E334C),
       child: MaterialButton(
-          minWidth: MediaQuery.of(context).size.width / 3,
+          minWidth: MediaQuery.of(context).size.width / 1.25,
           padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           onPressed: () {},
           child: Column(children: [
@@ -161,7 +186,7 @@ class _BodyState extends State<Body> {
       borderRadius: BorderRadius.circular(10),
       color: Color(0xFF8E334C),
       child: MaterialButton(
-          minWidth: MediaQuery.of(context).size.width / 3,
+          minWidth: MediaQuery.of(context).size.width / 1.25,
           padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           onPressed: () {
             Navigator.push(
@@ -189,7 +214,7 @@ class _BodyState extends State<Body> {
       color: Color(0xFF8E334C),
       child: MaterialButton(
           padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-          minWidth: MediaQuery.of(context).size.width / 3,
+          minWidth: MediaQuery.of(context).size.width / 1.25,
           onPressed: () {
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => TodoList()));
@@ -216,7 +241,7 @@ class _BodyState extends State<Body> {
       borderRadius: BorderRadius.circular(10),
       color: Color(0xFF8E334C),
       child: MaterialButton(
-          minWidth: MediaQuery.of(context).size.width / 3,
+          minWidth: MediaQuery.of(context).size.width / 1.25,
           padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           onPressed: () {
             Navigator.push(
@@ -243,7 +268,7 @@ class _BodyState extends State<Body> {
       borderRadius: BorderRadius.circular(10),
       color: Color(0xFF8E334C),
       child: MaterialButton(
-          minWidth: MediaQuery.of(context).size.width / 3,
+          minWidth: MediaQuery.of(context).size.width / 1.25,
           padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           onPressed: () {
             Navigator.push(
@@ -296,29 +321,30 @@ class _BodyState extends State<Body> {
         mainAxisSize: MainAxisSize.max,
         children: [
           SizedBox(
-            height: 80,
+            height: 20,
           ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [AttendanceButton, MarksButton],
+          AttendanceButton,
+          SizedBox(
+            height: 10,
           ),
+          MarksButton,
+          SizedBox(
+            height: 10,
+          ),
+          TodoButton,
+          SizedBox(
+            height: 10,
+          ),
+          ReminderButton,
+          SizedBox(
+            height: 10,
+          ),
+          ReferenceButton,
           SizedBox(
             height: 20,
           ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [TodoButton, ReminderButton],
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [ReferenceButton, SettingButton],
-          ),
+          CreateButtonAttendance
+          // SettingButton,
         ],
       ),
     );

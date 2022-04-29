@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'button.dart';
-import 'main.dart';
-import 'user.dart';
-import 'user_sheet_api.dart';
-import 'user_form_widget.dart';
+//import 'package:marks/button_atten.dart';
+import 'user_attend.dart';
+import 'user_sheet_api_attend.dart';
+import 'user_form_widget_attend.dart';
 
-class CreateSheetPage extends StatelessWidget {
+class CreateSheetPageAttend extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          iconTheme: IconThemeData(color: Color(0xFFEC9454)),
-          title: Text("Create"),
+          title: Text('Attendance'),
           centerTitle: true,
         ),
         body: Container(
@@ -52,11 +50,20 @@ class CreateSheetPage extends StatelessWidget {
           id: 1,
           name: 'god',
           email: 'dv@gmail.com',
-          //  begin: true,
-          quiz1: 0,
-          quiz2: 0,
-          insem1: 0,
-          insem2: 0),
+          begin: true,
+          attendance: 'Present'),
+      User(
+          id: 2,
+          name: '1god',
+          email: '3dv@gmail.com',
+          begin: true,
+          attendance: 'Present'),
+      User(
+          id: 3,
+          name: '2god',
+          email: 'dv3@gmail.com',
+          begin: false,
+          attendance: 'Present'),
     ];
     final jsonUsers = users.map((user) => user.toJson()).toList();
     await UserssheetApi.insert(jsonUsers);
