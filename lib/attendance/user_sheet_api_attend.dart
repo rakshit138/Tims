@@ -1,8 +1,8 @@
 import 'package:gsheets/gsheets.dart';
 import 'user_attend.dart';
 
-class UserssheetApi {
-  static const _credentials = r'''
+class UserssheetApiAtt {
+  static const _credentialsAtt = r'''
   {
   "type": "service_account",
   "project_id": "attend-348705",
@@ -17,63 +17,64 @@ class UserssheetApi {
 }
 
   ''';
-  static const _spreadsheetid = '1yDseGIrYLklXpvttrN3QE_TKPqq_oU4JS81Yw-3pl5I';
-  static final _gsheets = GSheets(_credentials);
-  static Worksheet? _userSheet;
+  static const _spreadsheetidAtt =
+      '1yDseGIrYLklXpvttrN3QE_TKPqq_oU4JS81Yw-3pl5I';
+  static final _gsheetsAtt = GSheets(_credentialsAtt);
+  static Worksheet? _userSheetAtt;
 
   static Future init() async {
     try {
-      final spreadsheet = await _gsheets.spreadsheet(_spreadsheetid);
-      _userSheet = await _getWorkSheet(spreadsheet, title: 'Attend');
+      final spreadsheetAtt = await _gsheetsAtt.spreadsheet(_spreadsheetidAtt);
+      _userSheetAtt = await _getWorkSheet(spreadsheetAtt, title: 'Attend');
 
-      final firstrow = Userfields.getfields();
-      _userSheet!.values.insertRow(1, firstrow);
+      final firstrow = UserfieldsAtt.getfields();
+      _userSheetAtt!.values.insertRow(1, firstrow);
     } catch (e) {
       print('initerror :$e');
     }
   }
 
   static Future<Worksheet> _getWorkSheet(
-    Spreadsheet spreadsheet, {
+    Spreadsheet spreadsheetAtt, {
     required String title,
   }) async {
     try {
-      return await spreadsheet.addWorksheet(title);
+      return await spreadsheetAtt.addWorksheet(title);
     } catch (e) {
-      return spreadsheet.worksheetByTitle(title)!;
+      return spreadsheetAtt.worksheetByTitle(title)!;
     }
   }
 
   static Future<int> getRowCount() async {
-    if (_userSheet == null) return 0;
+    if (_userSheetAtt == null) return 0;
 
-    final lastRow = await _userSheet!.values.lastRow();
+    final lastRow = await _userSheetAtt!.values.lastRow();
     return lastRow == null ? 0 : int.tryParse(lastRow.first) ?? 0;
   }
 
-  static Future<List<User>> getAll() async {
-    if (_userSheet == null) return <User>[];
-    final users = await _userSheet!.values.map.allRows();
-    return users == null ? <User>[] : users.map(User.fromJson).toList();
+  static Future<List<UserAtt>> getAll() async {
+    if (_userSheetAtt == null) return <UserAtt>[];
+    final users = await _userSheetAtt!.values.map.allRows();
+    return users == null ? <UserAtt>[] : users.map(UserAtt.fromJson).toList();
   }
 
-  static Future<User?> getById(int id) async {
-    if (_userSheet == null) return null;
-    final json = await _userSheet!.values.map.rowByKey(id, fromColumn: 1);
-    return json == null ? null : User.fromJson(json);
+  static Future<UserAtt?> getById(int id) async {
+    if (_userSheetAtt == null) return null;
+    final json = await _userSheetAtt!.values.map.rowByKey(id, fromColumn: 1);
+    return json == null ? null : UserAtt.fromJson(json);
   }
 
   static Future insert(List<Map<String, dynamic>> rowList) async {
-    if (_userSheet == null) return;
-    _userSheet!.values.map.appendRows(rowList);
+    if (_userSheetAtt == null) return;
+    _userSheetAtt!.values.map.appendRows(rowList);
   }
 
   static Future<bool> update(
     int id,
     Map<String, dynamic> user,
   ) async {
-    if (_userSheet == null) return false;
+    if (_userSheetAtt == null) return false;
 
-    return _userSheet!.values.map.insertRowByKey(id, user);
+    return _userSheetAtt!.values.map.insertRowByKey(id, user);
   }
 }

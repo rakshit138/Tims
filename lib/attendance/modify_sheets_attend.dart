@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'user_form_widget_attend.dart';
 import 'user_attend.dart';
 import 'user_sheet_api_attend.dart';
@@ -14,7 +15,7 @@ class ModifySheetsPageAttend extends StatefulWidget {
 class _ModifySheetsPageAttendState extends State<ModifySheetsPageAttend> {
   //  User? user;
   int index = 0;
-  List<User> users = [];
+  List<UserAtt> users = [];
 
   @override
   void initState() {
@@ -25,7 +26,7 @@ class _ModifySheetsPageAttendState extends State<ModifySheetsPageAttend> {
 
   Future getUsers() async {
     // final user = await  UserssheetApi.getById(1);
-    final users = await UserssheetApi.getAll();
+    final users = await UserssheetApiAtt.getAll();
     // print(user!.toJson());
 
     setState(() {
@@ -36,7 +37,7 @@ class _ModifySheetsPageAttendState extends State<ModifySheetsPageAttend> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text('Attendance'),
+          title: Text("Attendance"),
           centerTitle: true,
         ),
         body: Center(
@@ -44,11 +45,11 @@ class _ModifySheetsPageAttendState extends State<ModifySheetsPageAttend> {
             shrinkWrap: true,
             padding: const EdgeInsets.all(16),
             children: [
-              UserFormWidget(
+              UserFormWidgetAtt(
                 user: users.isEmpty ? null : users[index],
                 //user: user,
                 onSavedUser: (user) async {
-                  await UserssheetApi.update(user.id!, user.toJson());
+                  await UserssheetApiAtt.update(user.id!, user.toJson());
                 },
               ),
               const SizedBox(height: 16),
@@ -57,13 +58,13 @@ class _ModifySheetsPageAttendState extends State<ModifySheetsPageAttend> {
           ),
         ),
       );
-  Widget buildUserControls() => NavigateUsersWidgetAttend(
+  Widget buildUserControls() => NavigateUsersWidget(
         text: '${index + 1}/${users.length} Attend',
-        onClickedNextAttend: () {
+        onClickedNext: () {
           final nextIndex = index >= users.length - 1 ? 0 : index + 1;
           setState(() => index = nextIndex);
         },
-        onClickedPreviousAttend: () {
+        onClickedPrevious: () {
           final previousIndex = index <= 0 ? users.length - 1 : index - 1;
 
           setState(() => index = previousIndex);

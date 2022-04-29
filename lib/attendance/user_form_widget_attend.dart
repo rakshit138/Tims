@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'user_attend.dart';
 import 'button_atten.dart';
 
-class UserFormWidget extends StatefulWidget {
-  final ValueChanged<User> onSavedUser;
-  final User? user;
+class UserFormWidgetAtt extends StatefulWidget {
+  final ValueChanged<UserAtt> onSavedUser;
+  final UserAtt? user;
 
-  const UserFormWidget({
+  const UserFormWidgetAtt({
     Key? key,
     this.user,
     required this.onSavedUser,
   }) : super(key: key);
   @override
-  _UserFormWidgetState createState() => _UserFormWidgetState();
+  _UserFormWidgetAttState createState() => _UserFormWidgetAttState();
 }
 
-class _UserFormWidgetState extends State<UserFormWidget> {
+class _UserFormWidgetAttState extends State<UserFormWidgetAtt> {
   final formKey = GlobalKey<FormState>();
   late TextEditingController controllerName;
   late TextEditingController controllerEmail;
@@ -30,7 +30,7 @@ class _UserFormWidgetState extends State<UserFormWidget> {
   }
 
   @override
-  void didUpdateWidget(covariant UserFormWidget oldWidget) {
+  void didUpdateWidget(covariant UserFormWidgetAtt oldWidget) {
     super.didUpdateWidget(oldWidget);
     initUser();
   }
@@ -39,7 +39,8 @@ class _UserFormWidgetState extends State<UserFormWidget> {
     final name = widget.user == null ? '' : widget.user!.name;
     final email = widget.user == null ? '' : widget.user!.email;
     final begin = widget.user == null ? true : widget.user!.begin;
-    final attendance = widget.user == null ? '' : widget.user!.attendance;
+    final attendance =
+        widget.user == null ? 'Present' : widget.user!.attendance;
     // final id= widget.user ==null ? 0: widget.user!.name;
     //setState(() {
 
@@ -109,7 +110,7 @@ class _UserFormWidgetState extends State<UserFormWidget> {
               controllerAttendance.text = 'Present';
             } else {
               // Userfields.attendance="Absent" ;
-              controllerAttendance.text = 'Absent';
+              controllerAttendance.text = 'absent';
             }
           });
         },
@@ -121,7 +122,7 @@ class _UserFormWidgetState extends State<UserFormWidget> {
           final isValid = form.validate();
           if (isValid) {
             final id = widget.user == null ? null : widget.user!.id;
-            final user = User(
+            final user = UserAtt(
               id: id,
               name: controllerName.text,
               email: controllerEmail.text,

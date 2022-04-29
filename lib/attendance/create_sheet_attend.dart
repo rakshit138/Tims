@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 //import 'package:marks/button_atten.dart';
+
 import 'user_attend.dart';
 import 'user_sheet_api_attend.dart';
 import 'user_form_widget_attend.dart';
@@ -8,17 +9,17 @@ class CreateSheetPageAttend extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text('Attendance'),
+          title: Text("Attendance"),
           centerTitle: true,
         ),
         body: Container(
             alignment: Alignment.center,
             padding: EdgeInsets.all(32),
-            child: UserFormWidget(
+            child: UserFormWidgetAtt(
               onSavedUser: (user) async {
-                final id = await UserssheetApi.getRowCount() + 1;
+                final id = await UserssheetApiAtt.getRowCount() + 1;
                 final newUser = user.copy(id: id);
-                await UserssheetApi.insert([newUser.toJson()]);
+                await UserssheetApiAtt.insert([newUser.toJson()]);
                 //insertUsers();
                 // final user=User(
                 // id:1,
@@ -46,26 +47,14 @@ class CreateSheetPageAttend extends StatelessWidget {
       );
   Future insertUsers() async {
     final users = [
-      User(
+      UserAtt(
           id: 1,
           name: 'god',
           email: 'dv@gmail.com',
           begin: true,
-          attendance: 'Present'),
-      User(
-          id: 2,
-          name: '1god',
-          email: '3dv@gmail.com',
-          begin: true,
-          attendance: 'Present'),
-      User(
-          id: 3,
-          name: '2god',
-          email: 'dv3@gmail.com',
-          begin: false,
-          attendance: 'Present'),
+          attendance: 'present'),
     ];
     final jsonUsers = users.map((user) => user.toJson()).toList();
-    await UserssheetApi.insert(jsonUsers);
+    await UserssheetApiAtt.insert(jsonUsers);
   }
 }

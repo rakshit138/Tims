@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mad_project/UserModel.dart';
+import 'package:mad_project/classList_two.dart';
 import 'package:mad_project/create_sheet.dart';
 import 'package:mad_project/login.dart';
 import 'package:mad_project/modify_sheets.dart';
@@ -209,7 +210,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: TextStyle(fontSize: 15),
                       ),
                       onTap: () {
-                        Navigator.pop(context);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ClassList2()));
                       },
                       dense: true,
                     ),

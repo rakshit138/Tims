@@ -9,6 +9,7 @@ import 'create_sheet.dart';
 import 'home.dart';
 import 'classList.dart';
 import 'attendance/create_sheet_attend.dart';
+import 'classList_two.dart';
 
 const MaterialColor primaryMaroon = MaterialColor(
   _MaroonPrimaryValue,
@@ -142,12 +143,7 @@ class _BodyState extends State<Body> {
           padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           minWidth: MediaQuery.of(context).size.width / 2,
           height: MediaQuery.of(context).size.width / 4,
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => CreateSheetPageAttend()));
-          },
+          onPressed: () {},
           child: Text(
             "Create",
             textAlign: TextAlign.center,
@@ -165,7 +161,10 @@ class _BodyState extends State<Body> {
       child: MaterialButton(
           minWidth: MediaQuery.of(context).size.width / 1.25,
           padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => ClassList2()));
+          },
           child: Column(children: [
             Icon(
               Icons.people_alt_rounded,
@@ -343,7 +342,7 @@ class _BodyState extends State<Body> {
           SizedBox(
             height: 20,
           ),
-          CreateButtonAttendance
+          //CreateButtonAttendance
           // SettingButton,
         ],
       ),
