@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:gsheets/gsheets.dart';
 import 'user.dart';
 

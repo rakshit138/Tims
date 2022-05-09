@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, prefer_const_constructors_in_immutables, constant_identifier_names, unused_element, prefer_const_literals_to_create_immutables, unused_local_variable, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:mad_project/modify_sheets.dart';

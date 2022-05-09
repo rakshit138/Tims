@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_new
+// ignore_for_file: prefer_const_constructors, unnecessary_new, body_might_complete_normally_nullable, avoid_print
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'home.dart';
 import 'login.dart';

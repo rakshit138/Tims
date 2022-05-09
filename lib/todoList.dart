@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, file_names
+
 import 'package:flutter/material.dart';
 import 'package:mad_project/reminder.dart';
 
@@ -75,7 +77,7 @@ class TodoListState extends State<TodoList> {
           ),
           body: TextField(
             style: TextStyle(
-              color: Colors.teal[900],
+              color: Colors.black,
               fontSize: 19,
             ),
             autofocus: true,
